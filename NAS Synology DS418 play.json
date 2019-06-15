@@ -1,0 +1,1261 @@
+{
+	"meta": {
+		"chronografVersion": "1.7.11",
+		"sources": {
+			"1": {
+				"name": "InfluxDB",
+				"link": "/chronograf/v1/sources/1"
+			}
+		}
+	},
+	"dashboard": {
+		"id": 2,
+		"cells": [
+			{
+				"i": "475c56cb-d6e0-4a49-b1d8-5c5acb4784c1",
+				"x": 2,
+				"y": 0,
+				"w": 2,
+				"h": 3,
+				"name": "Storage Usage",
+				"queries": [
+					{
+						"query": "SELECT mean(\"used_percent\") FROM \"nas_telegraf\".\"autogen\".\"disk\" WHERE time > :dashboardTime: GROUP BY time(:interval:) FILL(previous)",
+						"queryConfig": {
+							"database": "nas_telegraf",
+							"measurement": "disk",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "",
+									"args": [
+										{
+											"value": "used_percent",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"fill": "previous",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "%",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "gauge",
+				"colors": [
+					{
+						"id": "0",
+						"type": "min",
+						"hex": "#32B08C",
+						"name": "viridian",
+						"value": "0"
+					},
+					{
+						"id": "1",
+						"type": "max",
+						"hex": "#F95F53",
+						"name": "curacao",
+						"value": "100"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "disk.mean_total",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "disk.mean_used",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/475c56cb-d6e0-4a49-b1d8-5c5acb4784c1"
+				}
+			},
+			{
+				"i": "9271234c-db34-49c5-bc26-cbe68ce1704d",
+				"x": 0,
+				"y": 3,
+				"w": 6,
+				"h": 3,
+				"name": "SDRAM usage",
+				"queries": [
+					{
+						"query": "SELECT last(\"used_percent\") AS \"used_percent\" FROM \"nas_telegraf\".\"autogen\".\"mem\" WHERE time > :dashboardTime: GROUP BY time(:interval:)",
+						"queryConfig": {
+							"database": "nas_telegraf",
+							"measurement": "mem",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "used_percent",
+									"args": [
+										{
+											"value": "used_percent",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "Memory Usage (%)",
+						"prefix": "",
+						"suffix": "%",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "49e27423-26d2-47f0-97ec-321164b7578f",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "af62944b-7764-4152-af93-3cce24499c86",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/9271234c-db34-49c5-bc26-cbe68ce1704d"
+				}
+			},
+			{
+				"i": "1d6a43f0-a0f5-4f14-92bc-38b6192d23c8",
+				"x": 6,
+				"y": 3,
+				"w": 6,
+				"h": 3,
+				"name": "Network Traffic",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(last(\"ifInOctets\"),10s) AS \"in\", non_negative_derivative(last(\"ifOutOctets\"),10s) AS \"out\" FROM \"nas_telegraf\".\"autogen\".\"ifTable\" WHERE time > :dashboardTime: GROUP BY time(:interval:), \"ifDescr\" FILL(null)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(last(\"ifInOctets\"),10s) AS \"in\", non_negative_derivative(last(\"ifOutOctets\"),10s) AS \"out\" FROM \"nas_telegraf\".\"autogen\".\"ifTable\" WHERE time > :dashboardTime: GROUP BY time(:interval:), \"ifDescr\" FILL(null)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "Traffic Rate",
+						"prefix": "",
+						"suffix": "b/s",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "714676d1-3693-430e-995a-608f9439e239",
+						"type": "scale",
+						"hex": "#DA6FF1",
+						"name": "Ectoplasm",
+						"value": "0"
+					},
+					{
+						"id": "d4edde8a-0717-4f80-8c04-81a01a249ca3",
+						"type": "scale",
+						"hex": "#00717A",
+						"name": "Ectoplasm",
+						"value": "0"
+					},
+					{
+						"id": "b86871b9-d8c5-43b4-84e6-026f6f9b354f",
+						"type": "scale",
+						"hex": "#ACFF76",
+						"name": "Ectoplasm",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/1d6a43f0-a0f5-4f14-92bc-38b6192d23c8"
+				}
+			},
+			{
+				"i": "aa23ae97-1449-49cb-b536-24a91d645e76",
+				"x": 6,
+				"y": 6,
+				"w": 6,
+				"h": 3,
+				"name": "Disk I/O rate",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(last(\"reads\"),1s) AS \"reads\", non_negative_derivative(last(\"writes\"),1s) AS \"writes\" FROM \"nas_telegraf\".\"autogen\".\"diskio\" WHERE time > :dashboardTime: GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(last(\"reads\"),1s) AS \"reads\", non_negative_derivative(last(\"writes\"),1s) AS \"writes\" FROM \"nas_telegraf\".\"autogen\".\"diskio\" WHERE time > :dashboardTime: GROUP BY time(:interval:) FILL(null)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "Rate (reads/writes)",
+						"prefix": "",
+						"suffix": "/s",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stacked",
+				"colors": [
+					{
+						"id": "74f8441d-5bf9-4078-b127-4a8ee8a0873e",
+						"type": "scale",
+						"hex": "#FDC44F",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "604bb1f9-6e2e-4280-b0dd-548d34daf65f",
+						"type": "scale",
+						"hex": "#007C76",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "2cd9e83e-636f-47de-9889-60d489df1f4a",
+						"type": "scale",
+						"hex": "#8983FF",
+						"name": "Cthulhu",
+						"value": "0"
+					}
+				],
+				"legend": {
+					"type": "static",
+					"orientation": "bottom"
+				},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/aa23ae97-1449-49cb-b536-24a91d645e76"
+				}
+			},
+			{
+				"i": "2ca955f3-45ff-479e-87ce-0827c4c87024",
+				"x": 9,
+				"y": 0,
+				"w": 3,
+				"h": 3,
+				"name": "System Status",
+				"queries": [
+					{
+						"query": "SELECT last(\"cpuFanStatus\") AS \"cpuFanStatus\", last(\"systemFanStatus\") AS \"systemFanStatus\", last(\"powerStatus\") AS \"powerStatus\", mean(\"systemStatus\") AS \"systemStatus\" FROM \"nas_telegraf\".\"autogen\".\"snmp.SYNO\" WHERE time > :dashboardTime:",
+						"queryConfig": {
+							"database": "nas_telegraf",
+							"measurement": "snmp.SYNO",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "cpuFanStatus",
+									"args": [
+										{
+											"value": "cpuFanStatus",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "systemFanStatus",
+									"args": [
+										{
+											"value": "systemFanStatus",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "powerStatus",
+									"args": [
+										{
+											"value": "powerStatus",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "systemStatus",
+									"args": [
+										{
+											"value": "systemStatus",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "table",
+				"colors": [
+					{
+						"id": "base",
+						"type": "background",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					},
+					{
+						"id": "ba10b0fb-d5e8-4a23-9349-bb739324758f",
+						"type": "background",
+						"hex": "#BF3D5E",
+						"name": "ruby",
+						"value": "0"
+					},
+					{
+						"id": "f01db6c7-12f4-42ae-87da-181ca3d3a083",
+						"type": "background",
+						"hex": "#32B08C",
+						"name": "viridian",
+						"value": "1"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "snmp.SYNO.cpuFanStatus",
+						"displayName": "CPU Fan Status",
+						"visible": true
+					},
+					{
+						"internalName": "snmp.SYNO.systemFanStatus",
+						"displayName": "System Fan Status",
+						"visible": true
+					},
+					{
+						"internalName": "snmp.SYNO.powerStatus",
+						"displayName": "Power Status",
+						"visible": true
+					},
+					{
+						"internalName": "snmp.SYNO.systemStatus",
+						"displayName": "System Status",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/2ca955f3-45ff-479e-87ce-0827c4c87024"
+				}
+			},
+			{
+				"i": "d7e0e9d7-8d7d-4b4d-86f9-c7f565c36807",
+				"x": 6,
+				"y": 0,
+				"w": 3,
+				"h": 3,
+				"name": "Disk Status",
+				"queries": [
+					{
+						"query": "SELECT last(\"diskModel\") AS \"diskModel\", last(\"diskStatus\") AS \"diskStatus\" FROM \"nas_telegraf\".\"autogen\".\"diskTable\" WHERE time > :dashboardTime: GROUP BY \"diskID\"",
+						"queryConfig": {
+							"database": "nas_telegraf",
+							"measurement": "diskTable",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "diskModel",
+									"args": [
+										{
+											"value": "diskModel",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "diskStatus",
+									"args": [
+										{
+											"value": "diskStatus",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": [
+									"diskID"
+								]
+							},
+							"areTagsAccepted": false,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "table",
+				"colors": [
+					{
+						"id": "base",
+						"type": "background",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					},
+					{
+						"id": "795ecceb-2527-45ca-9250-7febcf8d6e3b",
+						"type": "background",
+						"hex": "#BF3D5E",
+						"name": "ruby",
+						"value": "0"
+					},
+					{
+						"id": "764174c2-8f3d-4cac-aa57-4fd01ba20f1c",
+						"type": "background",
+						"hex": "#32B08C",
+						"name": "viridian",
+						"value": "1"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": false
+					},
+					{
+						"internalName": "diskID",
+						"displayName": "Disk ID",
+						"visible": true
+					},
+					{
+						"internalName": "diskTable.diskModel",
+						"displayName": "Disk Model",
+						"visible": true
+					},
+					{
+						"internalName": "diskTable.diskStatus",
+						"displayName": "Disk Status",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/d7e0e9d7-8d7d-4b4d-86f9-c7f565c36807"
+				}
+			},
+			{
+				"i": "f67279ca-0af9-4074-bbbe-a05125ed3588",
+				"x": 4,
+				"y": 0,
+				"w": 2,
+				"h": 3,
+				"name": "Disk Temperature",
+				"queries": [
+					{
+						"query": "SELECT last(\"diskTemperature\") FROM \"nas_telegraf\".\"autogen\".\"diskTable\" WHERE time > :dashboardTime:  GROUP BY \"diskID\" ",
+						"queryConfig": {
+							"database": "nas_telegraf",
+							"measurement": "diskTable",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "",
+									"args": [
+										{
+											"value": "diskTemperature",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": [
+									"diskID"
+								]
+							},
+							"areTagsAccepted": false,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "table",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					},
+					{
+						"id": "b64b1e75-dc74-46b9-955f-be988090259e",
+						"type": "text",
+						"hex": "#DC4E58",
+						"name": "fire",
+						"value": "50.75"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "diskID",
+						"displayName": "Disk ID",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "Sample",
+						"visible": false
+					},
+					{
+						"internalName": "diskID",
+						"displayName": "Disk ID",
+						"visible": true
+					},
+					{
+						"internalName": "diskTable.last",
+						"displayName": "Temperature (°C)",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/f67279ca-0af9-4074-bbbe-a05125ed3588"
+				}
+			},
+			{
+				"i": "51e5c045-2467-4b51-bb14-96286dbdb81b",
+				"x": 0,
+				"y": 0,
+				"w": 2,
+				"h": 3,
+				"name": "System Temperature",
+				"queries": [
+					{
+						"query": "SELECT last(\"temperature\") FROM \"nas_telegraf\".\"autogen\".\"snmp.SYNO\" WHERE time > :dashboardTime: GROUP BY time(:interval:) FILL(previous)",
+						"queryConfig": {
+							"database": "nas_telegraf",
+							"measurement": "snmp.SYNO",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "",
+									"args": [
+										{
+											"value": "temperature",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"fill": "previous",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "°C",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "gauge",
+				"colors": [
+					{
+						"id": "0",
+						"type": "min",
+						"hex": "#32B08C",
+						"name": "viridian",
+						"value": "0"
+					},
+					{
+						"id": "1",
+						"type": "max",
+						"hex": "#BF3D5E",
+						"name": "ruby",
+						"value": "80"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/51e5c045-2467-4b51-bb14-96286dbdb81b"
+				}
+			},
+			{
+				"i": "5fd2cc81-2dbc-49f8-b229-c9bc9d40bfe8",
+				"x": 0,
+				"y": 6,
+				"w": 6,
+				"h": 3,
+				"name": "CPU Usage",
+				"queries": [
+					{
+						"query": "SELECT mean(\"usage_user\") AS \"mean_usage_user\" FROM \"nas_telegraf\".\"autogen\".\"cpu\" WHERE time > :dashboardTime: GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "nas_telegraf",
+							"measurement": "cpu",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_usage_user",
+									"args": [
+										{
+											"value": "usage_user",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "/chronograf/v1/sources/1",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "CPU Usage (%)",
+						"prefix": "",
+						"suffix": "%",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "c3a2a9f5-3107-432c-8a9a-d468c0f02f40",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "b34e4354-8b58-4d87-8260-93f74f2d9ce0",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/5fd2cc81-2dbc-49f8-b229-c9bc9d40bfe8"
+				}
+			}
+		],
+		"templates": [],
+		"name": "NAS Synology DS418 play",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/2",
+			"cells": "/chronograf/v1/dashboards/2/cells",
+			"templates": "/chronograf/v1/dashboards/2/templates"
+		}
+	}
+}
